@@ -11,9 +11,9 @@ import {
   SidebarMenuItem,
   SidebarProvider,
 } from "./ui/sidebar";
-import { Bot, House } from "lucide-react";
 import { href, Link, useLocation } from "react-router";
 import { getCurrentWindow } from "@tauri-apps/api/window";
+import { Bot, House } from "lucide-react";
 
 interface PageLayoutProps {
   children: ReactNode;
@@ -23,10 +23,14 @@ const TITLEBAR_HEIGHT = "44px";
 
 export default function PageLayout({ children }: PageLayoutProps) {
   const location = useLocation();
+
   const handleTitlebarPointerDown = (event: PointerEvent<HTMLElement>) => {
-    if (event.button !== 0) return;
+    if (event.button !== 0) {
+      return;
+    }
+
     event.preventDefault();
-    void getCurrentWindow().startDragging();
+    getCurrentWindow().startDragging();
   };
 
   return (
@@ -80,11 +84,11 @@ export default function PageLayout({ children }: PageLayoutProps) {
                 </SidebarMenuItem>
                 <SidebarMenuItem>
                   <SidebarMenuButton
-                    isActive={location.pathname === href("/setup")}
+                    isActive={location.pathname === href("/settings")}
                     asChild
                   >
                     <Link
-                      to={href("/setup")}
+                      to={href("/settings")}
                       className="font-sans flex gap-2 items-center"
                     >
                       <Bot className="size-5" />

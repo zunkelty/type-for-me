@@ -6,9 +6,16 @@
     "linux"
   ],
   "windows": [
-    "main"
+    "main",
+    "transcription-listening-overlay"
   ],
   "permissions": [
-    "global-shortcut:default"
+    "core:webview:allow-create-webview-window",
+    "core:window:allow-show",
+    "core:window:allow-hide",
+    "core:window:allow-set-position",
+    "core:window:allow-set-size",
+    "global-shortcut:default",
+    "store:default"
   ]
 }

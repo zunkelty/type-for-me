@@ -17,7 +17,6 @@
   font-weight: 400;
 
   color: #0f0f0f;
-  background-color: #f6f6f6;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -145,6 +144,9 @@
   body {
     overscroll-behavior: none;
   }
+  body {
+    /* @apply bg-background text-foreground; */
+  }
 }
 
 /* Tauri window drag region */
@@ -156,13 +158,4 @@
 .titlebar-no-drag {
   app-region: no-drag;
   -webkit-app-region: no-drag;
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
 }

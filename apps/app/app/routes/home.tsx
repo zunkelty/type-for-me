@@ -1,7 +1,7 @@
 export function meta() {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "type for me" },
+    { name: "description", content: "Hold-to-record voice transcription app" },
   ];
 }
 

@@ -2,14 +2,15 @@ import {
   isRouteErrorResponse,
   Links,
   Meta,
-  Outlet,
   Scripts,
   ScrollRestoration,
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import PageLayout from "./components/page-layout";
+import { isListeningOverlayWindow } from "./lib/window-context";
+import { MainWindow } from "./windows/main-window";
+import { OverlayWindow } from "./windows/overlay-window";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -25,15 +26,21 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const isOverlay = isListeningOverlayWindow();
+  const overlayWindowStyle = isOverlay ? { background: "transparent" } : undefined;
+
   return (
-    <html lang="en">
+    <html lang="en" style={overlayWindowStyle}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
+      <body
+        style={overlayWindowStyle}
+        className={isOverlay ? "overflow-hidden" : undefined}
+      >
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -43,11 +50,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return (
-    <PageLayout>
-      <Outlet />
-    </PageLayout>
-  );
+  if (isListeningOverlayWindow()) {
+    return <OverlayWindow />;
+  }
+
+  return <MainWindow />;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

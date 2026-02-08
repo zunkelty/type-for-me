@@ -30,7 +30,7 @@ export function meta() {
   ];
 }
 
-export default function Setup() {
+export default function Settings() {
   const handleSelectPlugin = (slotId: string) => {
     void slotId;
     // TODO: Open plugin picker dialog for this slot.
@@ -53,7 +53,9 @@ export default function Setup() {
       <div className="mx-auto w-full max-w-4xl space-y-6">
         <Card>
           <CardHeader className="border-b">
-            <CardTitle className="text-xl tracking-tight">Plugin Slots</CardTitle>
+            <CardTitle className="text-xl tracking-tight">
+              Configure transcription
+            </CardTitle>
             <CardDescription className="max-w-3xl">
               Choose which plugins power each stage of your transcription
               pipeline.
